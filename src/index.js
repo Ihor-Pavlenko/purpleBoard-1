@@ -4,12 +4,15 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import { DarkModeContextProvider } from "./context/darkModeContext";
+import { AuthContextProvider } from "./context/AuthContext";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <DarkModeContextProvider>
-        <App />
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
       </DarkModeContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
