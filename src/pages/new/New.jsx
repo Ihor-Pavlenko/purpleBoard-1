@@ -1,22 +1,47 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import "./new.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import FolderIcon from "@material-ui/icons/Folder";
-import {
-  addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
-import { auth, db } from "../../firebase";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { auth, db, storage } from "../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 
 const New = ({ title, inputs }) => {
   const [file, setFile] = useState(null);
   const [data, setData] = useState({});
+  const [per, setPerc] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const uploadFile = () => {
+      const name = new Date().getTime() + file.name;
+      const storageRef = ref(storage, name);
+
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          setPerc((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+        },
+        (error) => {
+          console.log(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log(downloadURL);
+            setData((prev) => ({ ...prev, img: downloadURL }));
+          });
+        }
+      );
+    };
+
+    file && uploadFile();
+  }, [file]);
 
   const handleInputChange = (e) => {
     const id = e.target.id;
@@ -37,6 +62,7 @@ const New = ({ title, inputs }) => {
         ...data,
         timeStamp: serverTimestamp(),
       });
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +113,9 @@ const New = ({ title, inputs }) => {
                 </div>
               ))}
 
-              <button type="submit">Send</button>
+              <button disabled={per !== null && per < 100} type="submit">
+                Send
+              </button>
             </form>
           </div>
         </div>

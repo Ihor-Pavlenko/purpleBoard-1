@@ -7,11 +7,13 @@ import PersonOutlineOutlinedIcon from "@material-ui/icons/PersonOutlineOutlined"
 import ShopTwoIcon from "@material-ui/icons/ShopTwo";
 import MonetizationOnIcon from "@material-ui/icons/MonetizationOn";
 import AccountBalanceWalletIcon from "@material-ui/icons/AccountBalanceWallet";
+import { collection, onSnapshot } from "firebase/firestore";
+import { db } from "../../firebase";
 
 const Widget = ({ type }) => {
   const [data, setData] = useState({});
-  const amount = 100;
-  const diff = 20;
+  const [amount, setAmount] = useState(null);
+  const [diff, setDiff] = useState(null);
 
   useEffect(() => {
     switch (type) {
@@ -77,6 +79,22 @@ const Widget = ({ type }) => {
         break;
     }
   }, [type]);
+
+  useEffect(() => {
+    const unsub = onSnapshot(collection(db, "users"), (snapShot) => {
+      const totalUsers = snapShot.docs.length;
+      let activeCount = snapShot.docs.filter(
+        (item) => item.data().isActive
+      ).length;
+
+      setAmount(totalUsers);
+      setDiff((activeCount * 100) / totalUsers);
+    });
+
+    return () => {
+      unsub();
+    };
+  }, []);
 
   return (
     <div className="widget">
