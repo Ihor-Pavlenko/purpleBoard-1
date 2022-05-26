@@ -1,28 +1,28 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from 'react-router-dom'
 
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import List from "./pages/list/List";
-import Single from "./pages/single/Single";
-import New from "./pages/new/New";
+import Home from './pages/home/Home'
+import Login from './pages/login/Login'
+import List from './pages/list/List'
+import Single from './pages/single/Single'
+import New from './pages/new/New'
 
-import { productInputs, userInputs } from "./pages/new/formSource";
-import "./style/dark.scss";
-import { useContext } from "react";
-import { DarkModeContext } from "./context/darkModeContext";
-import { AuthContext } from "./context/AuthContext";
+import { productInputs, userInputs } from './pages/new/formSource'
+import './style/dark.scss'
+import { useContext } from 'react'
+import { DarkModeContext } from './context/darkModeContext'
+import { AuthContext } from './context/AuthContext'
 
 function App() {
-  const { darkMode } = useContext(DarkModeContext);
+  const { darkMode } = useContext(DarkModeContext)
 
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext)
 
   const RequireAuth = ({ children }) => {
-    return currentUser ? children : <Navigate to="/login" />;
-  };
+    return currentUser ? children : <Navigate to="/login" />
+  }
 
   return (
-    <div className={darkMode ? "app dark" : "app"}>
+    <div className={darkMode ? 'app dark' : 'app'}>
       <Routes>
         <Route path="/">
           <Route path="login" element={<Login />} />
@@ -55,7 +55,7 @@ function App() {
               path="new"
               element={
                 <RequireAuth>
-                  <New title={"Add New User"} inputs={userInputs} />
+                  <New title={'Add New User'} inputs={userInputs} />
                 </RequireAuth>
               }
             />
@@ -81,7 +81,7 @@ function App() {
               path="new"
               element={
                 <RequireAuth>
-                  <New title={"Add New Product"} inputs={productInputs} />
+                  <New title={'Add New Product'} inputs={productInputs} />
                 </RequireAuth>
               }
             />
@@ -89,7 +89,7 @@ function App() {
         </Route>
       </Routes>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

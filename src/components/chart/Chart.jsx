@@ -1,21 +1,14 @@
-import "./chart.scss";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import './chart.scss'
+import { AreaChart, Area, XAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
 
 const data = [
-  { name: "Jan", Total: 1200 },
-  { name: "Feb", Total: 2100 },
-  { name: "Mar", Total: 800 },
-  { name: "Apr", Total: 1600 },
-  { name: "May", Total: 900 },
-  { name: "Jun", Total: 1700 },
-];
+  { name: 'Jan', Total: 1200 },
+  { name: 'Feb', Total: 2100 },
+  { name: 'Mar', Total: 800 },
+  { name: 'Apr', Total: 1600 },
+  { name: 'May', Total: 900 },
+  { name: 'Jun', Total: 1700 },
+]
 
 const Chart = ({ aspect, title }) => {
   return (
@@ -47,7 +40,7 @@ const Chart = ({ aspect, title }) => {
         </AreaChart>
       </ResponsiveContainer>
     </div>
-  );
-};
+  )
+}
 
-export default Chart;
+export default Chart

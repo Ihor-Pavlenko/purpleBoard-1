@@ -1,10 +1,10 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
 
-import App from "./App";
-import { DarkModeContextProvider } from "./context/darkModeContext";
-import { AuthContextProvider } from "./context/AuthContext";
+import App from './App'
+import { DarkModeContextProvider } from './context/darkModeContext'
+import { AuthContextProvider } from './context/AuthContext'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,5 +16,5 @@ ReactDOM.render(
       </DarkModeContextProvider>
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById("root")
-);
+  document.getElementById('root')
+)

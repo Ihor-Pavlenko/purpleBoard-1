@@ -1,18 +1,18 @@
-import "./navbar.scss";
-import avatar from "../../images/myAvatar.svg";
+import './navbar.scss'
+import avatar from '../../images/myAvatar.svg'
 
-import SearchOutlinedIcon from "@material-ui/icons/SearchOutlined";
-import PublicOutlinedIcon from "@material-ui/icons/PublicOutlined";
-import Brightness2OutlinedIcon from "@material-ui/icons/Brightness2Outlined";
-import FullscreenExitOutlinedIcon from "@material-ui/icons/FullscreenExitOutlined";
-import NotificationsNoneOutlinedIcon from "@material-ui/icons/NotificationsNoneOutlined";
-import ChatOutlinedIcon from "@material-ui/icons/ChatOutlined";
-import ListOutlinedIcon from "@material-ui/icons/ListOutlined";
-import { useContext } from "react";
-import { DarkModeContext } from "../../context/darkModeContext";
+import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined'
+import PublicOutlinedIcon from '@material-ui/icons/PublicOutlined'
+import Brightness2OutlinedIcon from '@material-ui/icons/Brightness2Outlined'
+import FullscreenExitOutlinedIcon from '@material-ui/icons/FullscreenExitOutlined'
+import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined'
+import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
+import ListOutlinedIcon from '@material-ui/icons/ListOutlined'
+import { useContext } from 'react'
+import { DarkModeContext } from '../../context/darkModeContext'
 
 const Navbar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  const { dispatch } = useContext(DarkModeContext)
 
   return (
     <div className="navbar">
@@ -29,7 +29,7 @@ const Navbar = () => {
           <div className="item">
             <Brightness2OutlinedIcon
               className="icon"
-              onClick={() => dispatch({ type: "TOGGLE" })}
+              onClick={() => dispatch({ type: 'TOGGLE' })}
             />
           </div>
           <div className="item">
@@ -52,7 +52,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

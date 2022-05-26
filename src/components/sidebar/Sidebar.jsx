@@ -1,28 +1,28 @@
-import "./sidebar.scss";
-import { Link } from "react-router-dom";
+import './sidebar.scss'
+import { Link } from 'react-router-dom'
 
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import PeopleAltOutlinedIcon from "@material-ui/icons/PeopleAltOutlined";
-import ShopTwoIcon from "@material-ui/icons/ShopTwo";
-import CreditCardIcon from "@material-ui/icons/CreditCard";
-import EmojiTransportationIcon from "@material-ui/icons/EmojiTransportation";
-import EqualizerIcon from "@material-ui/icons/Equalizer";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-import SettingsSystemDaydreamIcon from "@material-ui/icons/SettingsSystemDaydream";
-import CodeIcon from "@material-ui/icons/Code";
-import SettingsIcon from "@material-ui/icons/Settings";
-import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import { useContext } from "react";
-import { DarkModeContext } from "../../context/darkModeContext";
+import DashboardIcon from '@material-ui/icons/Dashboard'
+import PeopleAltOutlinedIcon from '@material-ui/icons/PeopleAltOutlined'
+import ShopTwoIcon from '@material-ui/icons/ShopTwo'
+import CreditCardIcon from '@material-ui/icons/CreditCard'
+import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation'
+import EqualizerIcon from '@material-ui/icons/Equalizer'
+import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone'
+import SettingsSystemDaydreamIcon from '@material-ui/icons/SettingsSystemDaydream'
+import CodeIcon from '@material-ui/icons/Code'
+import SettingsIcon from '@material-ui/icons/Settings'
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline'
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
+import { useContext } from 'react'
+import { DarkModeContext } from '../../context/darkModeContext'
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext);
+  const { dispatch } = useContext(DarkModeContext)
 
   return (
     <div className="sidebar">
       <div className="top">
-        <Link to="/" style={{ textDecoration: "none" }}>
+        <Link to="/" style={{ textDecoration: 'none' }}>
           <span className="logo">logo</span>
         </Link>
       </div>
@@ -35,13 +35,13 @@ const Sidebar = () => {
             <span>Dashboard</span>
           </li>
           <p className="title">LISTS</p>
-          <Link to="/users" style={{ textDecoration: "none" }}>
+          <Link to="/users" style={{ textDecoration: 'none' }}>
             <li>
               <PeopleAltOutlinedIcon className="icon" />
               <span>Users</span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+          <Link to="/products" style={{ textDecoration: 'none' }}>
             <li>
               <ShopTwoIcon className="icon" />
               <span>Products</span>
@@ -89,17 +89,11 @@ const Sidebar = () => {
         </ul>
       </div>
       <div className="bottom">
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "LIGHT" })}
-        ></div>
-        <div
-          className="colorOption"
-          onClick={() => dispatch({ type: "DARK" })}
-        ></div>
+        <div className="colorOption" onClick={() => dispatch({ type: 'LIGHT' })}>{}</div>
+        <div className="colorOption" onClick={() => dispatch({ type: 'DARK' })}>{}</div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

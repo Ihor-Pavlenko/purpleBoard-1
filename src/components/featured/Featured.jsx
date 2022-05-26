@@ -1,10 +1,10 @@
-import "./featured.scss";
-import "react-circular-progressbar/dist/styles.css";
+import './featured.scss'
+import 'react-circular-progressbar/dist/styles.css'
 
-import { CircularProgressbar } from "react-circular-progressbar";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
-import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
+import { CircularProgressbar } from 'react-circular-progressbar'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp'
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown'
 
 const Featured = () => {
   return (
@@ -15,13 +15,11 @@ const Featured = () => {
       </div>
       <div className="bottom">
         <div className="featuredChart">
-          <CircularProgressbar value={70} text={"70%"} strokeWidth={5} />
+          <CircularProgressbar value={70} text={'70%'} strokeWidth={5} />
         </div>
         <p className="title">Total sales made today</p>
         <p className="amount">$420</p>
-        <p className="desc">
-          Previous transactions processing. Last payments may not be included.
-        </p>
+        <p className="desc">Previous transactions processing. Last payments may not be included.</p>
         <div className="summary">
           <div className="item">
             <div className="itemTitle">Target</div>
@@ -47,7 +45,7 @@ const Featured = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Featured;
+export default Featured

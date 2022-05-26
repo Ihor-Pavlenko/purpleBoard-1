@@ -1,72 +1,68 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
-import "./new.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
-import FolderIcon from "@material-ui/icons/Folder";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { auth, db, storage } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { useNavigate } from "react-router-dom";
+import './new.scss'
+import Sidebar from '../../components/sidebar/Sidebar'
+import Navbar from '../../components/navbar/Navbar'
+import FolderIcon from '@material-ui/icons/Folder'
+import { doc, serverTimestamp, setDoc } from 'firebase/firestore'
+import { auth, db, storage } from '../../firebase'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { useNavigate } from 'react-router-dom'
 
 const New = ({ title, inputs }) => {
-  const [file, setFile] = useState(null);
-  const [data, setData] = useState({});
-  const [per, setPerc] = useState(null);
-  const navigate = useNavigate();
+  const [file, setFile] = useState(null)
+  const [data, setData] = useState({})
+  const [per, setPerc] = useState(null)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const uploadFile = () => {
-      const name = new Date().getTime() + file.name;
-      const storageRef = ref(storage, name);
+      const name = new Date().getTime() + file.name
+      const storageRef = ref(storage, name)
 
-      const uploadTask = uploadBytesResumable(storageRef, file);
+      const uploadTask = uploadBytesResumable(storageRef, file)
 
       uploadTask.on(
-        "state_changed",
+        'state_changed',
         (snapshot) => {
-          setPerc((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+          setPerc((snapshot.bytesTransferred / snapshot.totalBytes) * 100)
         },
         (error) => {
-          console.log(error);
+          console.log(error)
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log(downloadURL);
-            setData((prev) => ({ ...prev, img: downloadURL }));
-          });
+            console.log(downloadURL)
+            setData((prev) => ({ ...prev, img: downloadURL }))
+          })
         }
-      );
-    };
+      )
+    }
 
-    file && uploadFile();
-  }, [file]);
+    file && uploadFile()
+  }, [file])
 
   const handleInputChange = (e) => {
-    const id = e.target.id;
-    const value = e.target.value;
+    const id = e.target.id
+    const value = e.target.value
 
-    setData({ ...data, [id]: value });
-  };
+    setData({ ...data, [id]: value })
+  }
 
   const handleAdd = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      await setDoc(doc(db, "users", res.user.uid), {
+      const res = await createUserWithEmailAndPassword(auth, data.email, data.password)
+      await setDoc(doc(db, 'users', res.user.uid), {
         ...data,
         timeStamp: serverTimestamp(),
-      });
-      navigate(-1);
+      })
+      navigate(-1)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <div className="new">
@@ -82,7 +78,7 @@ const New = ({ title, inputs }) => {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  : 'https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg'
               }
               alt=""
             />
@@ -96,7 +92,7 @@ const New = ({ title, inputs }) => {
                 <input
                   type="file"
                   id="file"
-                  style={{ display: "none" }}
+                  style={{ display: 'none' }}
                   onChange={(e) => setFile(e.target.files[0])}
                 />
               </div>
@@ -121,7 +117,7 @@ const New = ({ title, inputs }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default New;
+export default New
