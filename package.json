@@ -22,7 +22,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "lint": "eslint . --ext .jsx --fix",
+    "eslint": "eslint . --ext .jsx --fix ",
+    "stylelint": "npx stylelint \"**/*.{css,scss}\" --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -57,6 +58,12 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "prettier": "^2.6.2"
+    "postcss": "^8.4.14",
+    "prettier": "^2.6.2",
+    "stylelint": "^14.8.5",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^25.0.0",
+    "stylelint-order": "^5.0.0",
+    "stylelint-scss": "^4.2.0"
   }
 }
