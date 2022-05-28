@@ -10,10 +10,16 @@ import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import ListOutlinedIcon from '@material-ui/icons/ListOutlined'
 import { useContext } from 'react'
 import { DarkModeContext } from '../../context/darkModeContext'
+import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined'
 
 const Navbar = () => {
-  const { dispatch } = useContext(DarkModeContext)
+  const { dispatch, darkMode } = useContext(DarkModeContext)
+  
 
+  const handleChangeMode = () => {
+    dispatch({ type: 'TOGGLE' })
+  }
+  
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -26,11 +32,12 @@ const Navbar = () => {
             <PublicOutlinedIcon className="icon" />
             English
           </div>
-          <div className="item">
-            <Brightness2OutlinedIcon
-              className="icon"
-              onClick={() => dispatch({ type: 'TOGGLE' })}
-            />
+          <div className="item" onClick={handleChangeMode}>
+            {!darkMode
+              ? (<Brightness2OutlinedIcon
+                className="icon"
+              />)
+              : (<WbSunnyOutlinedIcon className='icon' />)}
           </div>
           <div className="item">
             <FullscreenExitOutlinedIcon className="icon" />
