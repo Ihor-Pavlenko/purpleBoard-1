@@ -4,22 +4,34 @@ import avatar from '../../images/myAvatar.svg'
 import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined'
 import PublicOutlinedIcon from '@material-ui/icons/PublicOutlined'
 import Brightness2OutlinedIcon from '@material-ui/icons/Brightness2Outlined'
+import FullscreenIcon from '@material-ui/icons/Fullscreen'
 import FullscreenExitOutlinedIcon from '@material-ui/icons/FullscreenExitOutlined'
 import NotificationsNoneOutlinedIcon from '@material-ui/icons/NotificationsNoneOutlined'
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined'
 import ListOutlinedIcon from '@material-ui/icons/ListOutlined'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { DarkModeContext } from '../../context/darkModeContext'
 import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined'
 
 const Navbar = () => {
   const { dispatch, darkMode } = useContext(DarkModeContext)
-  
+  const [isFullScreen, setIsFullScreen] = useState(false)
+
+  const handleChangeFullScreen = () => {
+    const element = document.getElementById('root')
+
+    if (!isFullScreen) {
+      element.requestFullscreen()
+    } else {
+      document.exitFullscreen()
+    }
+    setIsFullScreen(!isFullScreen)
+  }
 
   const handleChangeMode = () => {
     dispatch({ type: 'TOGGLE' })
   }
-  
+
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -39,8 +51,10 @@ const Navbar = () => {
               />)
               : (<WbSunnyOutlinedIcon className='icon' />)}
           </div>
-          <div className="item">
-            <FullscreenExitOutlinedIcon className="icon" />
+          <div className="item" onClick={handleChangeFullScreen}>
+            {isFullScreen
+              ? <FullscreenIcon className="icon"/>
+              : <FullscreenExitOutlinedIcon  className="icon"/>}
           </div>
           <div className="item">
             <NotificationsNoneOutlinedIcon className="icon" />
