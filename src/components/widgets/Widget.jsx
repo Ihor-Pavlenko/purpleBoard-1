@@ -10,7 +10,7 @@ import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet'
 import { collection, onSnapshot } from 'firebase/firestore'
 import { db } from '../../firebase'
 
-const Widget = ({ type }) => {
+const Widget = ({ type, onClick }) => {
   const [data, setData] = useState({})
   const [amount, setAmount] = useState(null)
   const [diff, setDiff] = useState(null)
@@ -19,9 +19,9 @@ const Widget = ({ type }) => {
     switch (type) {
     case 'users':
       setData({
-        title: 'TITLE',
+        title: 'USERS',
         isMoney: false,
-        link: 'Link',
+        link: 'See all users',
         icon: (
           <PersonOutlineOutlinedIcon
             className="icon"
@@ -32,9 +32,9 @@ const Widget = ({ type }) => {
       break
     case 'products':
       setData({
-        title: 'TITLE',
+        title: 'PRODUCTS',
         isMoney: false,
-        link: 'Link',
+        link: 'View all products',
         icon: (
           <ShopTwoIcon
             className="icon"
@@ -48,9 +48,9 @@ const Widget = ({ type }) => {
       break
     case 'earning':
       setData({
-        title: 'TITLE',
+        title: 'EARNINGS',
         isMoney: true,
-        link: 'Link',
+        link: 'View all earnings',
         icon: (
           <MonetizationOnIcon
             className="icon"
@@ -61,7 +61,7 @@ const Widget = ({ type }) => {
       break
     case 'balance':
       setData({
-        title: 'TITLE',
+        title: 'BALANCE',
         isMoney: true,
         link: 'See details',
         icon: (
@@ -95,7 +95,7 @@ const Widget = ({ type }) => {
   }, [type])
 
   return (
-    <div className="widget">
+    <div className="widget" onClick={onClick}>
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
