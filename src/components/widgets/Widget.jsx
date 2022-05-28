@@ -17,7 +17,7 @@ const Widget = ({ type }) => {
 
   useEffect(() => {
     switch (type) {
-    case 'user':
+    case 'users':
       setData({
         title: 'TITLE',
         isMoney: false,
@@ -30,7 +30,7 @@ const Widget = ({ type }) => {
         ),
       })
       break
-    case 'order':
+    case 'products':
       setData({
         title: 'TITLE',
         isMoney: false,
@@ -81,7 +81,7 @@ const Widget = ({ type }) => {
   }, [type])
 
   useEffect(() => {
-    const unsub = onSnapshot(collection(db, 'users'), (snapShot) => {
+    const unsub = onSnapshot(collection(db, type), (snapShot) => {
       const totalUsers = snapShot.docs.length
       let activeCount = snapShot.docs.filter((item) => item.data().isActive).length
 
@@ -92,7 +92,7 @@ const Widget = ({ type }) => {
     return () => {
       unsub()
     }
-  }, [])
+  }, [type])
 
   return (
     <div className="widget">

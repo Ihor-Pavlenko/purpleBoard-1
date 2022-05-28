@@ -1,7 +1,8 @@
+@import "../../style/colors";
+
 .sidebar {
   flex: 1;
   min-height: 100vh;
-  background-color: white;
   border-right: 0.5px solid rgb(230 227 227);
 
   .top {
@@ -11,15 +12,10 @@
     height: 50px;
 
     .logo {
-      color: #3d23dc;
+      color: $congressBlue;
       font-weight: bold;
       font-size: 20px;
     }
-  }
-
-  hr {
-    height: 0;
-    border: 0.5px solid rgb(230 227 227);
   }
 
   .center {
@@ -45,19 +41,19 @@
         cursor: pointer;
 
         &:hover {
-          background-color: #ece8ff;
+          background-color: $congressBlueLight;
         }
 
         .icon {
-          color: #3d23dc;
+          color: $congressBlue;
           font-size: 18px;
         }
 
         span {
           margin-left: 10px;
-          color: #888;
+          color: $slateGray;
           font-weight: 600;
-          font-size: 13px;
+          font-size: 15px;
         }
       }
     }

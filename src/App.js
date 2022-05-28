@@ -8,6 +8,7 @@ import New from './pages/new/New'
 
 import { productInputs, userInputs } from './pages/new/formSource'
 import './style/dark.scss'
+import './style/main.scss'
 import { useContext } from 'react'
 import { DarkModeContext } from './context/darkModeContext'
 import { AuthContext } from './context/AuthContext'
