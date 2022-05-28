@@ -1,5 +1,5 @@
 import './sidebar.scss'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import PeopleAltOutlinedIcon from '@material-ui/icons/PeopleAltOutlined'
@@ -15,9 +15,18 @@ import PersonOutlineIcon from '@material-ui/icons/PersonOutline'
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 import { useContext } from 'react'
 import { DarkModeContext } from '../../context/darkModeContext'
+import { AuthContext } from '../../context/AuthContext'
 
 const Sidebar = () => {
-  const { dispatch } = useContext(DarkModeContext)
+  const { dispatch: darkModeDispatch } = useContext(DarkModeContext)
+  const { dispatch: authDispatch } = useContext(AuthContext)
+
+  const navigate = useNavigate()
+
+  const handleLogout = () => {
+    authDispatch({ type: 'LOGOUT' })
+    navigate('/')
+  }
 
   return (
     <div className="sidebar">
@@ -81,15 +90,15 @@ const Sidebar = () => {
             <PersonOutlineIcon className="icon" />
             <span>Profile</span>
           </li>
-          <li>
+          <li onClick={handleLogout}>
             <ExitToAppIcon className="icon" />
             <span>Logout</span>
           </li>
         </ul>
       </div>
       <div className="bottom">
-        <div className="colorOption" onClick={() => dispatch({ type: 'LIGHT' })}>{}</div>
-        <div className="colorOption" onClick={() => dispatch({ type: 'DARK' })}>{}</div>
+        <div className="colorOption" onClick={() => darkModeDispatch({ type: 'LIGHT' })}>{}</div>
+        <div className="colorOption" onClick={() => darkModeDispatch({ type: 'DARK' })}>{}</div>
       </div>
     </div>
   )
